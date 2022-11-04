@@ -1,4 +1,5 @@
-// Karma configuration
+const Dotenv = require('dotenv-webpack');
+const path = require('path');// Karma configuration
 // Generated on Fri Jul 03 2020 20:15:52 GMT+0700 (Western Indonesia Time)
 module.exports = function (config) {
   config.set({
@@ -33,6 +34,14 @@ module.exports = function (config) {
       mode: 'development',
     },
 
+    plugins: [
+      new Dotenv({
+        path: path.resolve(__dirname, '.env'),
+        systemvars: true,
+        safe: true,
+      }),
+    ],
+
     webpackMiddleware: {
       // webpack-dev-middleware configuration
       // i. e.
@@ -60,11 +69,11 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
